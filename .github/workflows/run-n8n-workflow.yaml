@@ -26,6 +26,7 @@ jobs:
       run: |
         docker run --rm --init \
           -e TZ \
+          --entrypoint "" \                   # <— disables n8n’s default entrypoint
           -v "$PWD":/workspace \
           n8nio/n8n:latest sh -c '
             apk add --no-cache jq git >/dev/null
