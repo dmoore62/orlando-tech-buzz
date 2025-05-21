@@ -1,0 +1,47 @@
+[
+  {
+    "id": 1,
+    "title": "Orlando Developer Conference",
+    "date": "2025-06-15",
+    "time": "9:00 AM - 5:00 PM",
+    "location": "Orange County Convention Center",
+    "description": "A full-day conference featuring talks on web development, mobile apps, and cloud technologies.",
+    "url": "https://example.com/odc"
+  },
+  {
+    "id": 2,
+    "title": "Central Florida AI Meetup",
+    "date": "2025-06-22",
+    "time": "6:30 PM - 8:30 PM",
+    "location": "Downtown Orlando Co-working Space",
+    "description": "Monthly gathering to discuss the latest in artificial intelligence and machine learning.",
+    "url": "https://example.com/ai-meetup"
+  },
+  {
+    "id": 3,
+    "title": "Cybersecurity Workshop",
+    "date": "2025-07-08",
+    "time": "1:00 PM - 4:00 PM",
+    "location": "UCF Downtown Campus",
+    "description": "Hands-on workshop focused on network security and threat prevention techniques.",
+    "url": "https://example.com/security"
+  },
+  {
+    "id": 4,
+    "title": "Virtual Reality Expo",
+    "date": "2025-07-20",
+    "time": "10:00 AM - 6:00 PM",
+    "location": "Seminole State College",
+    "description": "Experience the latest VR technologies and applications from local developers.",
+    "url": "https://example.com/vr-expo"
+  },
+  {
+    "id": 5,
+    "title": "Women in Tech Luncheon",
+    "date": "2025-08-05",
+    "time": "11:30 AM - 1:30 PM",
+    "location": "Lake Mary Innovation Center",
+    "description": "Networking event celebrating achievements and discussing opportunities for women in technology.",
+    "url": "https://example.com/women-tech"
+  }
+]
