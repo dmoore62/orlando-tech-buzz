@@ -1,0 +1,93 @@
+{
+  "name": "JSON Formatter",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "27a57b3e-7397-45e2-b1c3-18b8b2962a25",
+      "name": "When clicking ‘Test workflow’"
+    },
+    {
+      "parameters": {
+        "text": "Orlando Devs\n2025-06-20\ntime: 9:00 AM - 5:00 PM\nlocation: Conduit\ndescription: Working on ODevs Calendar\nurl: https://example.com/odevs\n",
+        "schemaType": "fromJson",
+        "jsonSchemaExample": "{\n    \"id\": 1,\n    \"title\": \"Orlando Developer Conference\",\n    \"date\": \"2025-06-15\",\n    \"time\": \"9:00 AM - 5:00 PM\",\n    \"location\": \"Orange County Convention Center\",\n    \"description\": \"A full-day conference featuring talks on web development, mobile apps, and cloud technologies.\",\n    \"url\": \"https://example.com/odc\"\n}",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.informationExtractor",
+      "typeVersion": 1,
+      "position": [
+        240,
+        0
+      ],
+      "id": "74c2c24a-d8e0-4951-8fac-584cf8c62e99",
+      "name": "Information Extractor"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-4o-mini",
+          "mode": "list",
+          "cachedResultName": "gpt-4o-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        540,
+        220
+      ],
+      "id": "6d955715-5b7b-4bfe-bd03-97a24284e292",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "FJnV1i0IbsrPkaQP",
+          "name": "n8n free OpenAI API credits"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When clicking ‘Test workflow’": {
+      "main": [
+        [
+          {
+            "node": "Information Extractor",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Information Extractor",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "f1d912b5-28a2-4a40-9552-d431f0073c97",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "08aa7031542e2f7e7b4b4a75c0b1dffa7ed35085d97e45df5e97f4c61189c71d"
+  },
+  "id": "HZ29sKBysV8HAtnN",
+  "tags": []
+}
