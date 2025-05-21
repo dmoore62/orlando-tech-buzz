@@ -22,22 +22,26 @@ jobs:
     - name: Import + execute workflow
       env:
         TZ: America/New_York
-        WORKFLOW_PATH: n8n/news_gen.json  # e.g. workflows/events-bot.json
+        WORKFLOW_PATH: n8n/news_gen.json         # ← adjust to your JSON path
       run: |
+        # --- launch a throw-away n8n container -----------------------------
         docker run --rm --init \
+          --entrypoint="" \                     # disable n8n's default entrypoint
           -e TZ \
-          --entrypoint "" \                   # <— disables n8n’s default entrypoint
-          -v "$PWD":/workspace \
-          n8nio/n8n:latest sh -c '
-            apk add --no-cache jq git >/dev/null
+          -v "${{ github.workspace }}":/workspace \
+          n8nio/n8n:latest-alpine sh -c '
+            set -e
+    
+            apk add --no-cache git jq >/dev/null
+    
             WF_JSON="/workspace/$WORKFLOW_PATH"
-
-            # Import into SQLite DB inside the container
-            n8n import:workflow --input "$WF_JSON"   # :contentReference[oaicite:0]{index=0}
-
-            # Grab the new workflow’s ID
+    
+            # Import the workflow into the temp SQLite DB
+            n8n import:workflow --input "$WF_JSON"
+    
+            # Extract its new internal ID
             WF_ID=$(jq -r ".id" "$WF_JSON")
-
+    
             # Execute it exactly once
-            n8n execute --id "$WF_ID" --once         # :contentReference[oaicite:1]{index=1}
+            n8n execute --id "$WF_ID" --once
           '
