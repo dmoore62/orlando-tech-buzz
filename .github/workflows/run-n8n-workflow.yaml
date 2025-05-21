@@ -1,0 +1,42 @@
+name: Run n8n workflow
+
+# ──────── When should it run? ─────────────────────────────────────────
+on:
+  workflow_dispatch:          # manual “Run workflow” button
+  schedule:                   # daily at 07:00 AM New York (11:00 UTC)
+    - cron:  '0 11 * * *'
+
+jobs:
+  run-n8n:
+    runs-on: ubuntu-latest
+    steps:
+
+    # 1️⃣  Check out this repo (so the workflow JSON is on disk)
+    - uses: actions/checkout@v4
+
+    # 2️⃣  Pull the latest n8n image
+    - name: Pull n8n Docker image
+      run: docker pull n8nio/n8n:latest
+
+    # 3️⃣  Import the JSON, run it once, and exit
+    - name: Import + execute workflow
+      env:
+        TZ: America/New_York
+        WORKFLOW_PATH: n8n/news_gen.json  # e.g. workflows/events-bot.json
+      run: |
+        docker run --rm --init \
+          -e TZ \
+          -v "$PWD":/workspace \
+          n8nio/n8n:latest sh -c '
+            apk add --no-cache jq git >/dev/null
+            WF_JSON="/workspace/$WORKFLOW_PATH"
+
+            # Import into SQLite DB inside the container
+            n8n import:workflow --input "$WF_JSON"   # :contentReference[oaicite:0]{index=0}
+
+            # Grab the new workflow’s ID
+            WF_ID=$(jq -r ".id" "$WF_JSON")
+
+            # Execute it exactly once
+            n8n execute --id "$WF_ID" --once         # :contentReference[oaicite:1]{index=1}
+          '
