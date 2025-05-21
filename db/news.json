@@ -1,0 +1,34 @@
+[
+  {
+    "id": 1,
+    "title": "New Tech Hub Opening in Downtown Orlando",
+    "summary": "A new 50,000 square foot technology center will open next month, offering co-working and innovation space for local startups.",
+    "date": "2025-05-15",
+    "source": "Orlando Business Journal",
+    "url": "https://example.com/tech-hub"
+  },
+  {
+    "id": 2,
+    "title": "UCF Receives $5M Grant for Quantum Computing Research",
+    "summary": "The University of Central Florida has been awarded a significant grant to advance its quantum computing research program.",
+    "date": "2025-05-14",
+    "source": "Orlando Sentinel",
+    "url": "https://example.com/ucf-grant"
+  },
+  {
+    "id": 3,
+    "title": "Local Tech Startup Raises $10M in Series A Funding",
+    "summary": "An Orlando-based AI startup has secured significant funding to expand its operations and hiring across Central Florida.",
+    "date": "2025-05-12",
+    "source": "Florida Tech Today",
+    "url": "https://example.com/startup-funding"
+  },
+  {
+    "id": 4,
+    "title": "Lake Nona's Medical City Expands Digital Health Initiative",
+    "summary": "The growing medical innovation district is launching a new program focused on healthcare technology and digital wellness solutions.",
+    "date": "2025-05-10",
+    "source": "Orlando Health News",
+    "url": "https://example.com/lake-nona"
+  }
+]
