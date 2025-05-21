@@ -26,7 +26,7 @@ jobs:
       run: |
         # --- launch a throw-away n8n container -----------------------------
         docker run --rm --init \
-          --entrypoint="" \                     # disable n8n's default entrypoint
+          --entrypoint="" \
           -e TZ \
           -v "${{ github.workspace }}":/workspace \
           n8nio/n8n:latest-alpine sh -c '
