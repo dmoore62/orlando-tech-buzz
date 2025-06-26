@@ -29,7 +29,7 @@ jobs:
           --entrypoint="" \
           -e TZ \
           -v "${{ github.workspace }}":/workspace \
-          n8nio/n8n:latest-alpine sh -c '
+          n8nio/n8n:latest sh -c '
             set -e
     
             apk add --no-cache git jq >/dev/null
