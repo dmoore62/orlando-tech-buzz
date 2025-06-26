@@ -26,6 +26,7 @@ jobs:
       run: |
         # --- launch a throw-away n8n container -----------------------------
         docker run --rm --init \
+          --user 0 \
           --entrypoint="" \
           -e TZ \
           -v "${{ github.workspace }}":/workspace \
