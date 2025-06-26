@@ -29,6 +29,7 @@ jobs:
           --user 0 \
           --entrypoint="" \
           -e TZ \
+          -e WORKFLOW_PATH="$WORKFLOW_PATH" \
           -v "${{ github.workspace }}":/workspace \
           n8nio/n8n:latest sh -c '
             set -e
