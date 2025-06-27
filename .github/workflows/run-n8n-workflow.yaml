@@ -42,7 +42,7 @@ jobs:
             n8n import:workflow --input "$WF_JSON"
     
             # Extract its new internal ID
-            WF_ID="z9uAy3dIk81nN6wv"
+            WF_ID="Njwld7XoSiaqxdTl"
     
             # Execute it exactly once
             n8n execute --id "$WF_ID"
