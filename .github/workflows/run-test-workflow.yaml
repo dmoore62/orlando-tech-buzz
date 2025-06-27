@@ -1,0 +1,51 @@
+name: Run test workflow
+
+# ──────── When should it run? ─────────────────────────────────────────
+on:
+  workflow_dispatch:          # manual “Run workflow” button
+
+jobs:
+  run-n8n:
+    runs-on: ubuntu-latest
+    steps:
+
+    # 1️⃣  Check out this repo (so the workflow JSON is on disk)
+    - uses: actions/checkout@v4
+
+    # 2️⃣  Pull the latest n8n image
+    - name: Pull n8n Docker image
+      run: docker pull n8nio/n8n:latest
+
+    # 3️⃣  Import the JSON, run it once, and exit
+    - name: Import + execute workflow
+      env:
+        TZ: America/New_York
+        WORKFLOW_PATH: n8n/test_n8n.json         # ← adjust to your JSON path
+      run: |
+        # --- launch a throw-away n8n container -----------------------------
+        docker run --rm --init \
+          --user 0 \
+          --entrypoint="" \
+          -e TZ \
+          -e WORKFLOW_PATH="$WORKFLOW_PATH" \
+          -v "${{ github.workspace }}":/workspace \
+          n8nio/n8n:latest sh -c '
+            set -e
+    
+            apk add --no-cache git jq >/dev/null
+
+            mkdir -p ~/.n8n/nodes
+            cd ~/.n8n/nodes
+            npm install --omit=dev --silent n8n-nodes-googlesearch
+    
+            WF_JSON="/workspace/$WORKFLOW_PATH"
+    
+            # Import the workflow into the temp SQLite DB
+            n8n import:workflow --input "$WF_JSON"
+    
+            # Extract its new internal ID
+            WF_ID="kiInMGdsmp4nsTHn"
+    
+            # Execute it exactly once
+            n8n execute --id "$WF_ID"
+          '
