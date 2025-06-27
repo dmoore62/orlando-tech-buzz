@@ -1,0 +1,85 @@
+{
+  "name": "My workflow",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "5d3ad9e0-f523-4d1f-bf0a-4298bd882777",
+      "name": "When clicking ‘Test workflow’"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        220,
+        0
+      ],
+      "id": "9562263d-df55-4d35-a3ce-0809e4750883",
+      "name": "No Operation, do nothing"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "6ab88457-aa25-4e23-9f1e-cbe73e1de9f7",
+              "name": "ping",
+              "value": "pong",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        440,
+        0
+      ],
+      "id": "86d9560a-7c41-429a-8b47-78b94800842a",
+      "name": "Edit Fields"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When clicking ‘Test workflow’": {
+      "main": [
+        [
+          {
+            "node": "No Operation, do nothing",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "No Operation, do nothing": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "71919b34-033e-4324-a0d8-036d2ffa224f",
+  "meta": {
+    "instanceId": "a925901767b9210232d2c3ef7d670072f8c8cd2c41d8eb8186864aec870beef7"
+  },
+  "id": "kiInMGdsmp4nsTHn",
+  "tags": []
+}
