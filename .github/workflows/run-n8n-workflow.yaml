@@ -35,6 +35,10 @@ jobs:
             set -e
     
             apk add --no-cache git jq >/dev/null
+
+            mkdir -p ~/.n8n/nodes
+            cd ~/.n8n/nodes
+            npm install --omit=dev --silent n8n-nodes-googlesearch
     
             WF_JSON="/workspace/$WORKFLOW_PATH"
     
